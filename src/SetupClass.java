@@ -10,7 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class SetupClass extends StateBasedGame{
-	public static final int play = 0;
+	public static final int PLAY = 0;
+	public static final int GAME_OVER = 1;
 	public static final boolean isDEBUGGING=false;
 	
 	
@@ -30,13 +31,15 @@ public class SetupClass extends StateBasedGame{
 	
 	public SetupClass(String string) {
 		super(string);
-		this.addState(new Play(play));
+		this.addState(new Play(PLAY));
+		this.addState(new GameOver(GAME_OVER));
 	}
 
 	@Override
 	public void initStatesList(GameContainer app) throws SlickException {
-		this.getState(play).init(app, this);
-		this.enterState(play);
+		this.getState(PLAY).init(app, this);
+		this.getState(GAME_OVER).init(app, this);
+		this.enterState(PLAY);
 	}
 
 }

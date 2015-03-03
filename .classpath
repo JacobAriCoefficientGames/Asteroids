@@ -7,5 +7,8 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="ExternalLibs/libs/lwjgl/lwjgl-2.9.3/native/windows"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/ExternalLibs/libs/TWL.jar"/>
+	<classpathentry kind="lib" path="/ExternalLibs/libs/TWLEffects.jar"/>
+	<classpathentry kind="lib" path="/ExternalLibs/libs/TWLSlick.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

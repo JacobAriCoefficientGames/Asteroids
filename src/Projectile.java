@@ -50,6 +50,8 @@ public class Projectile extends GameObject implements UpdatingObject{
 	}
 	@Override
 	protected boolean checkForCollision() {
-		return(super.isCollidingWith(Play.getAsteroids())!=null);
+		GameObject collidingWith = super.isCollidingWith(Play.getAsteroids());
+		if(collidingWith!=null)System.out.println("destroyed asteroid "+ this);
+		return(collidingWith!=null);
 	}
 }

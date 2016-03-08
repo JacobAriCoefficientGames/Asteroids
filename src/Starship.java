@@ -17,7 +17,6 @@ public class Starship extends ExplodingGameObject {
 	private int maxSpeed;
 	private float acceleration;
 	private float velocityDecay;
-	private int shotDelay;
 	private float turnSpeed;
 	private boolean accelerating, turningLeft, turningRight;
 	private Image iconEnginesOff;
@@ -35,7 +34,6 @@ public class Starship extends ExplodingGameObject {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		guns = new Gun(new Image("res/Beam1.png"));
 		width = Integer.parseInt(template.getProperty("width"));
 		height = Integer.parseInt(template.getProperty("height"));
 		iconEnginesOff = new Image(template.getProperty("iconEnginesOff"));
@@ -43,8 +41,9 @@ public class Starship extends ExplodingGameObject {
 		maxSpeed = Integer.parseInt(template.getProperty("maxSpeed"));
 		acceleration = Float.parseFloat(template.getProperty("acceleration"));
 		velocityDecay =Float.parseFloat(template.getProperty("velocityDecay"));
-		shotDelay = Integer.parseInt(template.getProperty("shotDelay"));
 		turnSpeed=Float.parseFloat(template.getProperty("turnSpeed"));
+		int shotDelay = Integer.parseInt(template.getProperty("shotDelay"));
+		guns = new Gun(new Image("res/Beam1.png"),shotDelay);
 		ObjectImage = iconEnginesOff;
 		alive = true;
 		collisionModel = new Circle(pos.getX(), pos.getY(), height / 2);

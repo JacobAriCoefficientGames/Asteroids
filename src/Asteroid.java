@@ -9,8 +9,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Asteroid extends ExplodingGameObject{
 
-	static final int MaxVelocity = 5;
-	static final int MinVelocity = 3;
+	static final float MaxVelocity = 2;
+	static final float MinVelocity = .2f;
 	static final float angularVel=1;//degrees per sec
 	static final int maxDiam=225;
 	static final int minDiam=150;

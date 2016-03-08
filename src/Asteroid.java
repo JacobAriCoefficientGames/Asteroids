@@ -81,12 +81,10 @@ public class Asteroid extends ExplodingGameObject{
 		GameObject collidingWith = isCollidingWith(Play.getShip().getProjectiles());
 		if(collidingWith!=null){
 			collidingWith.die();
-			System.out.println("killed by"+collidingWith);
+			return true;
 		}
-		return(collidingWith!=null);
-
+		return false;
 		}
-
 		return true;
 	}
 	

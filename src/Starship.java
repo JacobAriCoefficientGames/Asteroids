@@ -43,7 +43,8 @@ public class Starship extends ExplodingGameObject {
 		velocityDecay =Float.parseFloat(template.getProperty("velocityDecay"));
 		turnSpeed=Float.parseFloat(template.getProperty("turnSpeed"));
 		int shotDelay = Integer.parseInt(template.getProperty("shotDelay"));
-		guns = new Gun(new Image("res/Beam1.png"),shotDelay);
+		String ammo=template.getProperty("ammo");
+		guns = new Gun(new Image(ammo),shotDelay);
 		ObjectImage = iconEnginesOff;
 		alive = true;
 		collisionModel = new Circle(pos.getX(), pos.getY(), height / 2);

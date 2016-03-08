@@ -38,7 +38,7 @@ public class Asteroid extends ExplodingGameObject{
 	
 	// Random Generators
 		private static Image getRandomImage() throws SlickException {
-		String[] files = {"res/DeadAsteroid.png"};
+		String[] files = {"res/DeadAsteroid2.png"};
 		int randomFileIndex=rnd.nextInt(files.length);
 		return(new Image(files[randomFileIndex]));
 	}

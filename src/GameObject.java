@@ -77,13 +77,13 @@ public abstract class GameObject {
 
 	// WRAP OBJECT TO VISIBLE SCREEN SPACE
 	private void wrapOnScreen() {
-		if (pos.getX() - width / 2 > SetupClass.ScreenWidth)
+		if (pos.getX()/* - width / 2*/ > SetupClass.ScreenWidth)
 			pos.set(0, pos.getY());
-		if (pos.getX() + width / 2 < 0)
+		if (pos.getX() /*+ width / 2 */< 0)
 			pos.set(SetupClass.ScreenWidth, pos.getY());
-		if (pos.getY() - height / 2 > SetupClass.ScreenHeight)
+		if (pos.getY()/* - height / 2*/> SetupClass.ScreenHeight)
 			pos.set(pos.getX(), 0);
-		if (pos.getY() + height / 2 < 0)
+		if (pos.getY() /*+ height / 2 */< 0)
 			pos.set(pos.getX(), SetupClass.ScreenHeight);
 	}
 

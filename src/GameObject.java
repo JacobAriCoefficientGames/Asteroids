@@ -90,8 +90,8 @@ public abstract class GameObject {
 	// CHANGE POS BY SPEED
 	private void move() {
 		pos.add(speed);
-		collisionModel.setX(pos.getX());
-		collisionModel.setY(pos.getY());
+		collisionModel.setCenterX(pos.getX()+width/2);
+		collisionModel.setCenterY(pos.getY()+height/2);
 	}
 
 	/**
@@ -99,8 +99,6 @@ public abstract class GameObject {
 	 * collide with should call isCollidingWith for collidable objects/lists
 	 */
 	protected boolean checkForCollision() {
-		collisionModel.setX(pos.getX());
-		collisionModel.setY(pos.getY());
 		return false;
 	}
 

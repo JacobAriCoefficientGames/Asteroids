@@ -2,16 +2,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Properties;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
@@ -59,8 +55,6 @@ public class Starship extends ExplodingGameObject {
 
 	private void SetImage() {
 		int v = (int) Math.ceil(Math.random() - .1);
-		if (SetupClass.isDEBUGGING)
-			System.out.println("Engines on:" + (accelerating && v == 1));
 		if (accelerating && v == 1)
 			setObjectImage(EnginesOn);
 		else
@@ -71,7 +65,6 @@ public class Starship extends ExplodingGameObject {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) {
 		guns.update(gc, sbg, delta);
 		if (alive) {
-			System.out.println(getRotation());
 			if (turningLeft)
 				rotate((float) -.22 * delta);
 			if (turningRight)
@@ -81,7 +74,6 @@ public class Starship extends ExplodingGameObject {
 						.scale(acceleration - 1));
 			if (!accelerating)
 				speed = speed.scale(velocityDecay);
-			checkForCollision();
 			SetImage();
 			turningLeft = false;
 			accelerating = false;
@@ -122,25 +114,12 @@ public class Starship extends ExplodingGameObject {
 	@Override
 	protected boolean checkForCollision() {
 		if (alive) {
-			System.out.println(Active);
 			super.checkForCollision();
-			collisionModel.setX(pos.getX() + height / 4);
-			collisionModel.setY(pos.getY());
-			// TODO Auto-generated method stub
-			ArrayList<GameObject> Active = Play.getAsteroids();
-			Iterator<GameObject> i = Active.iterator();
-			while (i.hasNext()) {
-				Asteroid b = (Asteroid) i.next();
-				if (isCollidingWith(b) && b.isAlive()) {
-					return true;
-				}
-			}return false;
-		}else{
-		return true;
+			return isCollidingWith(Play.getAsteroids())!=null;
 		}
+		return true;
 	}
 	protected void die() {
-		System.out.println("dying");
 		super.die();
 		if(!Active)Play.GameOver();
 	}

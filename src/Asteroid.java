@@ -90,8 +90,7 @@ public class Asteroid extends ExplodingGameObject{
 	
 	@Override
 	protected void die(){
-		System.out.println("splitting into"+hitsLeft);
-		if(alive)splitAsteroid();
+		if(alive&&hitsLeft>1)splitAsteroid();
 		super.die();
 	}
 	public void splitAsteroid(){

@@ -14,14 +14,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Starship extends ExplodingGameObject {
 
-	static final int maxSpeed = 75;
-	static final float acceleration = (float) 1.33;
-	static final float velocityDecay = (float) .99;
-	static final int shotDelay = 3000;
-
+	private int maxSpeed;
+	private float acceleration;
+	private float velocityDecay;
+	private int shotDelay;
+	private float turnSpeed;
 	private boolean accelerating, turningLeft, turningRight;
-	private Image EnginesOff;
-	private Image EnginesOn;
+	private Image iconEnginesOff;
+	private Image iconEnginesOn;
 	Gun guns;
 
 	// Default position at the center of the screen
@@ -38,9 +38,14 @@ public class Starship extends ExplodingGameObject {
 		guns = new Gun(new Image("res/Beam1.png"));
 		width = Integer.parseInt(template.getProperty("width"));
 		height = Integer.parseInt(template.getProperty("height"));
-		EnginesOff = new Image(template.getProperty("EnginesOff"));
-		EnginesOn = new Image(template.getProperty("EnginesOn"));
-		ObjectImage = EnginesOff;
+		iconEnginesOff = new Image(template.getProperty("iconEnginesOff"));
+		iconEnginesOn = new Image(template.getProperty("iconEnginesOn"));
+		maxSpeed = Integer.parseInt(template.getProperty("maxSpeed"));
+		acceleration = Float.parseFloat(template.getProperty("acceleration"));
+		velocityDecay =Float.parseFloat(template.getProperty("velocityDecay"));
+		shotDelay = Integer.parseInt(template.getProperty("shotDelay"));
+		turnSpeed=Float.parseFloat(template.getProperty("turnSpeed"));
+		ObjectImage = iconEnginesOff;
 		alive = true;
 		collisionModel = new Circle(pos.getX(), pos.getY(), height / 2);
 	}
@@ -56,9 +61,9 @@ public class Starship extends ExplodingGameObject {
 	private void SetImage() {
 		int v = (int) Math.ceil(Math.random() - .1);
 		if (accelerating && v == 1)
-			setObjectImage(EnginesOn);
+			setObjectImage(iconEnginesOn);
 		else
-			setObjectImage(EnginesOff);
+			setObjectImage(iconEnginesOff);
 	}
 
 	// UPDATE
@@ -66,9 +71,9 @@ public class Starship extends ExplodingGameObject {
 		guns.update(gc, sbg, delta);
 		if (alive) {
 			if (turningLeft)
-				rotate((float) -.22 * delta);
+				rotate((float) -turnSpeed * delta);
 			if (turningRight)
-				rotate((float) .22 * delta);
+				rotate((float) turnSpeed * delta);
 			if (accelerating && speed.length() < maxSpeed)
 				speed = speed.add(new Vector2f(getRotation())
 						.scale(acceleration - 1));
